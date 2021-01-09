@@ -2,6 +2,7 @@ import pygame
 import os
 import Player
 import Enemy
+import random
 
 pygame.font.init()
 pygame.mixer.init()
@@ -76,15 +77,18 @@ def handle_bullets(enemy, player):
 
 
 def create_enemy(enemies, width, height):
-    enemy = Enemy.Enemy(pygame, os, width, height, 10, 5,5)
+    vel=random.randint(1,10)
+    enemy = Enemy.Enemy(pygame, os, width, height, 10, 5,vel)
     enemies.append(enemy)
 
 
 def main():
     player = Player.Player(pygame, os, WIDTH // 2, HEIGHT - HEIGHT // 7, 10,  30,3)
     enemies = []
-    create_enemy(enemies, WIDTH - (WIDTH // 3) * 2, HEIGHT // 8)
-    create_enemy(enemies, WIDTH - WIDTH // 3, HEIGHT // 8)
+    
+    amount = random.randint(1,7)
+    for i in range(amount):
+        create_enemy(enemies, WIDTH - (WIDTH // 10) * i, HEIGHT // 8)
 
     winner_text = ""
 
